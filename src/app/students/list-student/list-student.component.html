@@ -1,0 +1,48 @@
+<div class = "card">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+         
+            <div class="col-sm-9"><h1 style="color:rgb(255, 0, 0);" align = "center">List Student</h1></div> 
+            <div class="col-sm-3"><a routerLink="/student" class="btn btn-info pull-right">
+
+              <i class="fas fa-plus-circle custom-fa-plus-circle"></i>
+              Add Student
+              </a></div> 
+      
+    </nav>
+    
+   
+    <div class="col-md-12">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+     
+        <th>mat</th>
+        <th>nom</th>
+        <th>classe</th>
+        <th>Adresse</th>
+        <th>Tel</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let student of studentList | paginate: { itemsPerPage: 5, currentPage: p }">
+        <td hidden>{{student.$key}}</td>
+        <td>{{student.mat}}</td>
+        <td>{{student.nom}}</td>
+        <td>{{student.classe}}</td>
+        <td>{{student.adresse}}</td>
+        <td>{{student.tel}}</td>
+        <td>{{student.email}}</td>
+        <td><button class="btn btn-warning" style="margin-left: 20px;" (click) = "selectStudent(student)">
+           <i class="fa fa-trash-o" ></i>Edit</button></td>
+        <td><button class="btn btn-danger" (click) = "deleteStudent(student)">
+           <i class="fa fa-pencil-square-o"></i>Delete</button></td>
+         </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+  </div>
+  
+  
